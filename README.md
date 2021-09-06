@@ -8,4 +8,4 @@ The form for editing a student.
 Implement checking: You can't delete a group if there are some students.
 
 ## Frameworks
-ASP.NET Core MVS, Entity Framework, MS SQL
+`ASP.NET Core MVS`, `Entity Framework`, `MS SQL`
