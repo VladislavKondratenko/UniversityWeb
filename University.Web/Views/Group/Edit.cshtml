@@ -1,0 +1,45 @@
+﻿@model University.Web.Models.ViewModels.GroupsViewModels.GroupEditViewModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" asp-controller="Group" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Id" class="form-control"/>
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="CourseId" class="form-control"/>
+                <span asp-validation-for="CourseId" class="text-danger"></span>
+            </div>
+            <div>
+                <label asp-for="CourseName" class="control-label"></label>
+                <select asp-for="CourseName" class="form-control">
+                    @foreach (var item in Model.ListOfCoursesNames)
+                    {
+                        <option>@item</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-courseId="@Model.CourseId">Back to list of the groups</a>
+</div>

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<University.Web.Models.ViewModels.GroupsViewModels.GroupIndexViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@Model.First().CourseName</h1>
+
+<div>
+    <a asp-action="Index" asp-controller="Course">Back to list of courses</a>
+</div>
+
+<p>
+    <a asp-action="Create" asp-route-courseId="@Model.First().CourseId">Create new group</a>
+</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(m => m.First().Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(m => m.First().NumberStudents)
+        </th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @if (item.NumberStudents == 0)
+                {
+                    <a asp-controller="Student" asp-action="Create" asp-route-groupId="@item.Id" asp-route-courseId="@item.CourseId">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </a>
+                }
+                else
+                {
+                    <a asp-controller="Student" asp-action="Index" asp-route-groupId="@item.Id">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </a>
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberStudents)
+            </td>
+            <td>
+                <p>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </p>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
